@@ -1,15 +1,37 @@
 {% extends 'main/layout.html' %}
+{% load static%}
 
 {% block title %}
     Личный кабинет
 {% endblock %}
 
 {% block content %}
-    <h2 class="account">Lorem ipsum dolor sit amet, consectetur 
-        adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-        sunt in culpa qui officia deserunt mollit anim id est laborum</h2>
+    <h2 class="account">Личный кабинет</h2>
+    <ul class="navigation-account">
+        <a href="http://"><li>Мои курсы</li></a>
+        <a href="http://"><li>График работы</li></a>
+        <a href="http://"><li>Зарплата</li></a>
+        <a href="http://"><li>Сменить пароль</li></a>
+        <a href="http://"><li>Выйти</li></a>
+    </ul>
+    <div class="changes">
+        <img src="{% static 'main/img/ellipse4.svg' %}">
+        <fieldset>
+            <legend>ФИО</legend>
+            <input type="text" placeholder="Enter Full Name" name="fullname" required>
+        </fieldset>
+        <fieldset>
+            <legend>Должность</legend>
+            <input type="text" placeholder="Enter Job" name="job" required>
+        </fieldset>
+        <fieldset>
+            <legend>Телефон</legend>
+            <input type="text" placeholder="Enter Phone" name="phone" required>
+        </fieldset>
+        <fieldset>
+            <legend>E-mail</legend>
+            <input type="text" placeholder="Enter Email" name="email" required>
+        </fieldset>
+        <button type="submit">Сохранить</button>
+    </div>
 {% endblock %}

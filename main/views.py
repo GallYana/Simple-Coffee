@@ -1,4 +1,9 @@
 from django.shortcuts import render
+from .models import News
+
+def post_list(request):
+    posts = News.objects.all()
+    return render(request, 'main/post_list.html', {'posts': posts})
 
 def index(request):
     data = {

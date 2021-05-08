@@ -5,24 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'main/css/main.css'%}">
+    <link rel="stylesheet" href="{% static 'main/css/style.css'%}">
     <title>{% block title %}{{ title }}{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="{% url 'home'%}"><img src="{% static 'main/img/logo.svg'%}"></a>
-        </div>
-        <div class="search"> 
-            Поиск
-        </div>
-
-        <ul class="navigation">
-            <a href="{% url 'menu' %}"><li>Меню</li></a>
-            <a href="{% url 'library' %}"><li>Библиотека знаний</li></a>
-            <a href="{% url 'personalaccount' %}"><li>Иван Петров <img src="{% static 'main/img/ellipse1.svg'%}"></li></a>
-        </ul>
-    </header>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+              <img src="{% static 'main/img/logo.svg'%}">
+            </div>
+            <nav class="main-menu">
+              <ul>
+                <li>
+                    <form>
+                        <input type="search" class="search" placeholder="Поиск">
+                    </form>
+                </li>
+                <li><a href="{% url 'menu' %}">Меню</a></li>
+                <li><a href="{% url 'library' %}">Библиотека знаний</a></li>
+                <li><a href="{% url 'personalaccount' %}">ЛК</a></li>
+              </ul>
+            </nav>
+          </div>
+      </header>
     <main>
     {% block content %}
     {% endblock %}

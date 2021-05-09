@@ -43,13 +43,13 @@ from django.conf import settings
 
 class AboutProduct(models.Model):
     'id то есть primary key будет создан автоматически'
-    food_name = models.CharField("Продукт", max_length=150)
-    price = models.PositiveIntegerField("Цена", help_text = "указывать сумму в рублях")
-    squirrels = models.PositiveIntegerField("Белки")
-    fats = models.PositiveIntegerField("Жиры")
-    carbohydrates = models.PositiveIntegerField("Каброгидраты")
-    description_of_food = models.TextField("Описание продукта", blank=True)
-    image = models.ImageField("Изображение продукта", upload_to="static/main/img/aboutproduct/%Y/%m/%d/", blank=True)
+    food_name = models.CharField(verbose_name="Продукт", max_length=150)
+    price = models.PositiveIntegerField(verbose_name="Цена", help_text = "указывать сумму в рублях")
+    squirrels = models.PositiveIntegerField(verbose_name="Белки")
+    fats = models.PositiveIntegerField(verbose_name="Жиры")
+    carbohydrates = models.PositiveIntegerField(verbose_name="Каброгидраты")
+    description_of_food = models.TextField(verbose_name="Описание", blank=True)
+    image = models.ImageField(verbose_name="Изображение", upload_to="static/main/img/aboutproduct/%Y/%m/%d/", blank=True)
 
     def __str__(self):
         return self.food_name

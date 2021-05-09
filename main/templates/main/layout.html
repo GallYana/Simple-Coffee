@@ -5,41 +5,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'main/css/style.css'%}">
+    <link rel="stylesheet" href="#">
     <title>{% block title %}{{ title }}{% endblock %}</title>
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <div class="logo">
-              <img src="{% static 'main/img/logo.svg'%}">
-            </div>
-            <nav class="main-menu">
-              <ul>
-                <li>
-                    <form>
-                        <input type="search" class="search" placeholder="Поиск">
-                    </form>
-                </li>
-                <li><a href="{% url 'menu' %}">Меню</a></li>
-                <li><a href="{% url 'library' %}">Библиотека знаний</a></li>
-                <li><a href="{% url 'personalaccount' %}">ЛК</a></li>
-              </ul>
-            </nav>
+  <header>
+    <div class="logo">
+        <a href="{% url 'home' %}"><img src="{% static 'main/img/logo.svg'%}"></a>
+    </div>
+      <ul>
+        <li>
+          <div class="button">
+           <form>
+            <input type="search" class="search" placeholder="Поиск">
+            </form>
           </div>
-      </header>
+        </li>
+        <li><a href="{% url 'menu' %}">Меню</a></li>
+        <li><a href="{% url 'library' %}">Библиотека знаний</a></li>
+        <li><a href="{% url 'personalaccount' %}">ЛК</a></li>
+              </ul>
+            </header>
     <main>
+    <div class="content">
     {% block content %}
     {% endblock %}
+    </div>
     </main>
 
-    <footer>
-        <ul class="footer1">
-            <li><b>НАПИШИТЕ НАМ</b></li>
-            <li><b>НАВИГАЦИЯ</b></li>
-            <li><b>ИНФОРМАЦИЯ</b></li>
-        </ul>   
-    </footer>
+    <div class="page-footer">
+      <div class="footer-middle">
+        <div class="footer-menu">
+          <h3>НАПИШИТЕ НАМ</h3>
+          <ul>
+            <li>Мы любим получать письма! Напишите нам
+              ваши предложения или пожелания по адресам:</li>
+            <li>Сотрудничество: <a href="#">partnership@simplecoffee.ru</a></li>
+            <li>Пожаловаться: <a href="#">hurt@simplecoffee.ru</a></li>
+            <li>Похвалить: <a href="#">compliment@simplecoffee.ru</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu">
+          <h3>НАВИГАЦИЯ</h3>
+          <ul>
+            <li><a href="#">Меню</a></li>
+            <li><a href="#">Библиотека знаний</a></li>
+            <li><a href="#">Личный кабинет</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu">
+          <h3>ИНФОРМАЦИЯ</h3>
+          <ul>
+            <li><a href="#">Вакансии</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Перейти на сайт</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu">
+          <h3>Прайс-лист</h3>
+          <ul>
+            <li><a href="#">Скачать прайс</a></li>
+          </ul>
+        </div>
+        <div class="footer-menu">
+          <div class="footer-logo">
+            <img src="{% static 'main/img/logofooter.svg'%}" alt="SimpleCoffee">
+          </div>
+      </div>
+      </div>
+
+      <div class="footer-copyright">
+        <a>by so ostro 2021</a>
+      </div>
+      </div>
+    </div>
     <!-- <script src="{% static 'main/js/footer.js' %}"></script> -->
      
 </body>

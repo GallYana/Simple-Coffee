@@ -1,4 +1,4 @@
-body {
+/*body {
     min-width: 1160px;
     margin: 0;
     padding: 0;
@@ -6,6 +6,11 @@ body {
     color: #000000;
   }
   
+  .content {
+    margin:0 auto;
+    padding-top: 20px;
+  }
+
   .container {
     width: 1140px;
     margin: 0 auto;
@@ -62,3 +67,4 @@ body {
     border-radius: 50px;
     padding: 0 35px;
   }
+*/

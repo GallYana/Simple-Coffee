@@ -1,14 +1,14 @@
 from django.shortcuts import render
-from .models import News
+#from .models import News
 from .models import AboutProduct
 
 def post_list(request):
-    posts = News.objects.all()
-    return render(request, 'main/post_list.html', {'posts': posts})
+    #posts = News.objects.all()
+    return render(request, 'main/post_list.html')
 
 def index(request):
-    posts = News.objects.all()
-    return render(request, 'main/index.html', {'posts': posts})
+    
+    return render(request, 'main/index.html')
 
 def about(request):
     products = AboutProduct.objects.all()
@@ -19,3 +19,6 @@ def library(request):
 
 def account(request):
     return render(request, 'main/personalaccount.html')
+
+def barista(request):
+    return render(request, 'main/barista.html')

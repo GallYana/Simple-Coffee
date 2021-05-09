@@ -1,18 +1,18 @@
 {% extends 'main/layout.html' %}
 
 {% block title %}
-    {{ title }}
+    Simple Coffee
 {% endblock %}
 
 {% block content %}
 <h2>Мои курсы</h2>
 <ul>
-    <li>Бариста <a href="#">Продолжить</a></li>
+    <li>Бариста <a href="{% url 'bar' %}">Продолжить</a></li>
     <li>Менеджер <a href="#">Продолжить</a></li>
 </ul>
 <h2>Новости кофейни</h2>
 <ul>
-{% for post in posts %}
+<!--{% for post in posts %}
 <li>
     <h3>{{ post.topic }}</a></h3>
     
@@ -25,4 +25,5 @@
 </li>
 {% endfor %}
 </ul>
+-->
 {% endblock %}

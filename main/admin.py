@@ -7,5 +7,10 @@ from .models import *
 # admin.site.register(Role)
 # admin.site.register(News)
 
-
+admin.site.register(UserProfile)
+admin.site.register(Role)
+admin.site.register(News)
+admin.site.register(RoleCourses)
+admin.site.register(Course)
+admin.site.register(CategoryProduct)
 admin.site.register(AboutProduct)

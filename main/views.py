@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 #from .models import News
-from .models import AboutProduct
+from .models import *
 
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import FormView
@@ -61,13 +61,16 @@ class LogoutView(View):
 
         # После чего, перенаправляем пользователя на главную страницу.
         return HttpResponseRedirect("/")
-        
+
 def post_list(request):
-    #posts = News.objects.all()
-    return render(request, 'main/post_list.html')
+    posts = News.objects.all()
+    return render(request, 'main/post_list.html', {'posts': posts})
+
+def p_account(request):
+    information = User.objects.all()
+    return render(request, 'main/personalaccount.html', {'information': information})
 
 def index(request):
-    
     return render(request, 'main/index.html')
 
 def about(request):
@@ -76,9 +79,6 @@ def about(request):
 
 def library(request):
     return render(request, 'main/library.html')
-
-def account(request):
-    return render(request, 'main/personalaccount.html')
 
 def barista(request):
     return render(request, 'main/barista.html')

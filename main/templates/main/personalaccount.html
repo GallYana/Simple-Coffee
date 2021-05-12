@@ -14,9 +14,16 @@
         <a href="http://"><li>Сменить пароль</li></a>
         <a href="http://"><li>Выйти</li></a>
     </ul>
-    <div class="changes">
+    <div>
         <img src="{% static 'main/img/ellipse4.svg' %}">
-        <fieldset>
+        {% for info in information %}
+        <ul>
+            <li>Username: {{ info.username }}</li>
+            <li>Location: {{ info.profile.coffee_address }}</li>
+            <li>Birth Date: {{ info.bdate }}</li>
+        </ul>
+        {% endfor %}
+        <!--<fieldset>
             <legend>ФИО</legend>
             <input type="text" placeholder="Enter Full Name" name="fullname" required>
         </fieldset>
@@ -33,5 +40,6 @@
             <input type="text" placeholder="Enter Email" name="email" required>
         </fieldset>
         <button type="submit">Сохранить</button>
+    -->
     </div>
 {% endblock %}

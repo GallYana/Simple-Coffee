@@ -2,17 +2,16 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='static/main/img/users/%Y/%m/%d/', verbose_name='Изображение')
     bdate = models.DateField(auto_now=False, auto_now_add=False)
     coffee_address = models.TextField(blank=False)
     number = models.CharField(max_length=11, blank=True)
-     
-    login = models.TextField()
-    password = models.TextField()
-        
+
     def __unicode__(self):
         return self.user
  

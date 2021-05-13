@@ -4,17 +4,15 @@ from .models import *
 
 from django.contrib.auth import authenticate, login, logout
 
+from django.contrib.auth.models import User
+
 from .forms import UserForm
 
 
 
 def p_account(request):
-    user = User.objects.filter(id=request.user.id)
-    if len(user) > 0:
-        mainCycle = UserProfile.objects.filter(user=request.user)[0]
-        return render(request, 'personalaccount.html', {'user':user[0], 'mainCycle':mainCycle})
-    else:
-        return redirect('login')
+    information = User.objects.filter(id=request.user.id)
+    return render(request, 'main/personalaccount.html', {'information': information})
 
 def user_login(request):
     if request.method == "POST":
@@ -56,7 +54,12 @@ def post_list(request):
     return render(request, 'main/post_list.html', {'posts': posts})
 
 def index(request):
-    return render(request, 'main/index.html')
+    user = User.objects.filter(id=request.user.id)
+    if len(user) > 0:
+        mainCycle = UserProfile.objects.filter(user=request.user)[0]
+        return render(request, 'main/index.html', {'user':user[0], 'mainCycle':mainCycle})
+    else:
+         return redirect('login')
 
 def about(request):
     products = AboutProduct.objects.all()

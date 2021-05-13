@@ -15,12 +15,20 @@
         <a href="http://"><li>Выйти</li></a>
     </ul>
     <div>
-        <img src="{% static 'main/img/ellipse4.svg' %}">
+        
         {% for info in information %}
         <ul>
-            <li>Username: {{ info.username }}</li>
-            <li>Location: {{ info.profile.coffee_address }}</li>
+            <li><img src="{{ info.avatar.url }}" width="300" height="300"></li>
+            <li>Username: {{ info.user }}</li>
+            <li>Location: {{ info.coffee_address }}</li>
             <li>Birth Date: {{ info.bdate }}</li>
+
+        </ul>
+        {% endfor %}
+        {% for info in s %}
+        <ul>
+            <li>Имя: {{ info.first_name }}</li>
+            <li>Фамилия: {{ info.last_name }}</li>
         </ul>
         {% endfor %}
         <!--<fieldset>

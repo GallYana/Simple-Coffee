@@ -11,8 +11,9 @@ from .forms import UserForm
 
 
 def p_account(request):
-    information = User.objects.filter(id=request.user.id)
-    return render(request, 'main/personalaccount.html', {'information': information})
+    s = User.objects.filter(id=request.user.id)
+    information = UserProfile.objects.filter(user=request.user)
+    return render(request, 'main/personalaccount.html', {'information': information, 's': s})
 
 def user_login(request):
     if request.method == "POST":

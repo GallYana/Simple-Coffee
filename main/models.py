@@ -8,9 +8,9 @@ from django.dispatch import receiver
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='static/main/img/users/%Y/%m/%d/', verbose_name='Изображение')
-    bdate = models.DateField(auto_now=False, auto_now_add=False)
-    coffee_address = models.TextField(blank=False)
-    number = models.CharField(max_length=11, blank=True)
+    bdate = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    coffee_address = models.TextField(blank=False, null=True)
+    number = models.CharField(max_length=11, blank=True, null=True)
 
     def __unicode__(self):
         return self.user

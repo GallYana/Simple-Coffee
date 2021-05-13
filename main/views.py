@@ -1,74 +1,59 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-#from .models import News
 from .models import *
 
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import FormView
+from django.contrib.auth import authenticate, login, logout
 
-from django.contrib.auth.forms import AuthenticationForm
-
-# Функция для установки сессионного ключа.
-# По нему django будет определять, выполнил ли вход пользователь.
-from django.contrib.auth import login
-
-from django.http import HttpResponseRedirect
-from django.views.generic.base import View
-from django.contrib.auth import logout
+from .forms import UserForm
 
 
-# Вариант регистрации на базе класса FormView
-class RegisterFormView(FormView):
-    # Указажем какую форму мы будем использовать для регистрации наших пользователей, в нашем случае
-    # это UserCreationForm - стандартный класс Django унаследованный
-    form_class = UserCreationForm
 
-    # Ссылка, на которую будет перенаправляться пользователь в случае успешной регистрации.
-    # В данном случае указана ссылка на страницу входа для зарегистрированных пользователей.
-    success_url = "/login/"
+def p_account(request):
+    user = User.objects.filter(id=request.user.id)
+    if len(user) > 0:
+        mainCycle = UserProfile.objects.filter(user=request.user)[0]
+        return render(request, 'personalaccount.html', {'user':user[0], 'mainCycle':mainCycle})
+    else:
+        return redirect('login')
 
-    # Шаблон, который будет использоваться при отображении представления.
-    template_name = "main/register.html"
+def user_login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            return render(request, 'main/login.html', {'invalid':True})
+    else:
+        return render(request, 'main/login.html', {'invalid':False})
 
-    def form_valid(self, form):
-        # Создаём пользователя, если данные в форму были введены корректно.
-        form.save()
+def user_logout(request):
+    logout(request)
+    return redirect('login')
 
-        # Вызываем метод базового класса
-        return super(RegisterFormView, self).form_valid(form)
+def user_registration(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            mainCycle = UserProfile()
+            mainCycle.user = user
+            mainCycle.save()
+            user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+            login(request, user)
+            return redirect('index')
+        else:
+            return render(request, 'main/registration.html', {'invalid':True, 'form': form})
+    else:
+        form = UserForm()
+        return render(request, 'main/registration.html', {'invalid':False, 'form': form})
 
-class LoginFormView(FormView):
-    form_class = AuthenticationForm
-
-    # Аналогично регистрации, только используем шаблон аутентификации.
-    template_name = "main/login.html"
-
-    # В случае успеха перенаправим на главную.
-    success_url = "/"
-
-    def form_valid(self, form):
-        # Получаем объект пользователя на основе введённых в форму данных.
-        self.user = form.get_user()
-
-        # Выполняем аутентификацию пользователя.
-        login(self.request, self.user)
-        return super(LoginFormView, self).form_valid(form)
-
-class LogoutView(View):
-    def get(self, request):
-        # Выполняем выход для пользователя, запросившего данное представление.
-        logout(request)
-
-        # После чего, перенаправляем пользователя на главную страницу.
-        return HttpResponseRedirect("/")
 
 def post_list(request):
     posts = News.objects.all()
     return render(request, 'main/post_list.html', {'posts': posts})
-
-def p_account(request):
-    information = User.objects.all()
-    return render(request, 'main/personalaccount.html', {'information': information})
 
 def index(request):
     return render(request, 'main/index.html')

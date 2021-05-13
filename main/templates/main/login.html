@@ -1,16 +1,40 @@
-{% extends 'main/layout.html' %}
-
-    {% block title %}
-    Войти
-    {% endblock %}
-
-    {% block content %}
-    <form action="" method="post">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div align="center">
+    <form method="post" action="{% url 'login' %}" >
       {% csrf_token %}
-      <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
-      {{ form.as_p }}
-      <button type="submit">
-          Войти
-        </button>
+      <h3> LOGIN </h3>
+      <div class="form-group">
+          <label for="username"> Username: </label>
+          <br>
+          <input type="text" name="username" id="username" placeholder="Username">
+      </div>
+      <div class="form-group">
+          <label for="password"> Password: </label>
+          <br>
+          <input type="text" name="password" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Login">
+      </div>
+     {% if invalid%}
+     <p> Incorrect login or password. </p>
+     {% endif %}
     </form>
-    {% endblock %}
+
+  </div>
+  <div align="center">Or you can <a href="/registration">sign up</a></div>
+</body>
+</html>
+
+    
+
+    
+

@@ -14,11 +14,13 @@ class EmployeeInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = 'employee'
 
+
 # Define a new User admin
 class UserAdmin(UserAdmin):
     inlines = (EmployeeInline, )
 
 admin.site.unregister(User)
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Role)
 admin.site.register(News)

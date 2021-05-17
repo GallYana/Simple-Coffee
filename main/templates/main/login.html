@@ -1,38 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Вход
+{% endblock %}
+
+{% block content %}
   <div align="center">
     <form method="post" action="{% url 'login' %}" >
       {% csrf_token %}
-      <h3> LOGIN </h3>
+      <h3> Вход </h3>
       <div class="form-group">
-          <label for="username"> Username: </label>
+          <label for="username"> Логин: </label>
           <br>
           <input type="text" name="username" id="username" placeholder="Username">
       </div>
       <div class="form-group">
-          <label for="password"> Password: </label>
+          <label for="password"> Пароль: </label>
           <br>
           <input type="text" name="password" id="password" placeholder="Password">
       </div>
       <div class="form-group">
-        <input type="submit" value="Login">
+        <input type="submit" value="Войти">
       </div>
      {% if invalid%}
      <p> Incorrect login or password. </p>
      {% endif %}
     </form>
-
   </div>
-  <div align="center">Or you can <a href="/registration">sign up</a></div>
-</body>
-</html>
+  <div align="center">Или же вы можете <a href="/registration">Зарегистироваться</a></div>
+{% endblock %}
+
 
     
 

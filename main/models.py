@@ -31,7 +31,7 @@ class Role(models.Model):
 class News(models.Model):
     topic = models.CharField(max_length=255)
     news_text = models.TextField(blank=True)
-    photo = models.ImageField(upload_to="static/main/img/news/%Y/%m/%d/", blank=True)
+    photo = models.ImageField(upload_to="static/main/img/news/%Y/%m/%d/")
     role = models.ForeignKey('Role', on_delete=models.PROTECT, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)

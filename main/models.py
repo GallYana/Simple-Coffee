@@ -7,8 +7,8 @@ from django.dispatch import receiver
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='static/main/img/users/%Y/%m/%d/', verbose_name='Изображение')
-    bdate = models.DateField(auto_now=False, auto_now_add=False, null=True)
+    avatar = models.ImageField(upload_to='static/main/img/users/%Y/%m/%d/', verbose_name='Изображение', blank=True)
+    bdate = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     coffee_address = models.TextField(blank=False, null=True)
     number = models.CharField(max_length=11, blank=True, null=True)
     role = models.ForeignKey('Role', on_delete=models.PROTECT, blank=True, null=True)
@@ -43,15 +43,23 @@ class News(models.Model):
     def __str__(self):
         return self.topic
 
-class RoleCourses(models.Model):
-    kurs = models.PositiveIntegerField(primary_key=True)
-    kurs_name = models.CharField(max_length=100)
-    role = models.ForeignKey('Role', on_delete=models.PROTECT, null=True)
+#class RoleCourses(models.Model):
+#    kurs = models.PositiveIntegerField(primary_key=True)
+#    kurs_name = models.CharField(max_length=100)
+ #   role = models.ForeignKey('Role', on_delete=models.PROTECT, null=True)
 
 class Course(models.Model):
-    title = models.CharField(max_length=100)
+    course = models.PositiveIntegerField(primary_key=True)
+    title = models.CharField(max_length=100, default='Title')
     role = models.ForeignKey('Role', on_delete=models.PROTECT, null=True)
-    kurs = models.OneToOneField(RoleCourses, on_delete = models.CASCADE, primary_key = True)
+    
+
+class ModulesBarista(models.Model):
+    number = models.PositiveIntegerField(primary_key=True)
+    module = models.ForeignKey('Course', on_delete=models.PROTECT, null=True) 
+    title = models.CharField(max_length=100, default='Title of module')
+    def __str__(self):
+        return self.title
 
 class CategoryProduct(models.Model):
     category = models.PositiveIntegerField("Номер категории продукта", primary_key=True) 

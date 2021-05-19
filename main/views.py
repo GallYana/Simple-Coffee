@@ -8,12 +8,18 @@ from django.contrib.auth.models import User
 
 from .forms import UserForm
 
+from django.http import HttpResponse
+
 
 
 def p_account(request):
-    s = User.objects.filter(id=request.user.id)
-    information = UserProfile.objects.filter(user=request.user)
-    return render(request, 'main/personalaccount.html', {'information': information, 's': s})
+    if request.user.is_superuser:
+        s = User.objects.filter(id=request.user.id)
+        return render(request, 'main/personalaccount.html', {'s' : s})
+    else: 
+        s = User.objects.filter(id=request.user.id)
+        information = UserProfile.objects.filter(user=request.user)
+        return render(request, 'main/personalaccount.html', {'information': information, 's': s})
 
 def user_login(request):
     if request.method == "POST":
@@ -50,15 +56,14 @@ def user_registration(request):
         return render(request, 'main/registration.html', {'invalid':False, 'form': form})
 
 
-def post_list(request):
-    posts = News.objects.all()
-    return render(request, 'main/post_list.html', {'posts': posts})
+
 
 def index(request):
+    posts = News.objects.all()
     user = User.objects.filter(id=request.user.id)
     if len(user) > 0:
         mainCycle = UserProfile.objects.filter(user=request.user)[0]
-        return render(request, 'main/index.html', {'user':user[0], 'mainCycle':mainCycle})
+        return render(request, 'main/index.html', {'user':user[0], 'mainCycle':mainCycle, 'posts': posts})
     else:
          return redirect('login')
 
@@ -71,3 +76,6 @@ def library(request):
 
 def barista(request):
     return render(request, 'main/barista.html')
+
+def mod(request):
+    return HttpResponse('Знакомство')

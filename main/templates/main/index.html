@@ -1,5 +1,6 @@
 {% extends 'main/layout.html' %}
 
+
 {% block title %}
     Simple Coffee
 {% endblock %}
@@ -11,19 +12,25 @@
     <li>Менеджер <a href="#">Продолжить</a></li>
 </ul>
 <h2>Новости кофейни</h2>
-<ul>
-{% for post in posts %}
-<li>
-    <h3>{{ post.topic }}</h3>
-    
-    <p> <img src="{{ post.photo }}" width = 140px
-        height = 110px></p>
-    
-    <p>{{ post.news_text }}</p>
-    <br>
-    <p>с {{ post.created_date }} включительно</p>
-</li>
-{% endfor %}
-</ul>
 
+{% for post in posts %}
+<h3>{{ post.topic }}</a></h3>
+<div>
+    <ul style="list-style-type: none;">
+        <li><img src="{{ post.photo.url }}" width="140px" height="110px" style="border-radius: 4px;"></li>
+        <li>
+            <p style="font-size: 14px;
+            line-height: 17px;">
+            {{ post.news_text }}
+            </p>
+        </li>
+        <br>
+        <li><i>{{ post.created_date }}</i></li>
+        <hr>
+    </ul>
+</div>
+
+{% endfor %}
 {% endblock %}
+
+

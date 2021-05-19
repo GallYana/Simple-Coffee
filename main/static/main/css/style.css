@@ -7,6 +7,7 @@
   src: url('../font/Montserrat/Montserrat-Bold.ttf'); 
   } 
 
+
 html, body {
     min-width: 1160px;
     margin: 0;
@@ -210,3 +211,5 @@ html, body {
     margin: 0;
     margin-right: 15px;
   }
+
+  

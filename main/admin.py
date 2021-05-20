@@ -19,6 +19,9 @@ class EmployeeInline(admin.StackedInline):
 class UserAdmin(UserAdmin):
     inlines = (EmployeeInline, )
 
+admin.site.site_title = 'Админ-панель'
+admin.site.site_header = 'Админ-панель Simple Coffee'
+
 admin.site.unregister(User)
 
 admin.site.register(User, UserAdmin)

@@ -28,6 +28,10 @@ class Role(models.Model):
     def __str__(self):
         return self.role_name
 
+    class Meta:
+        verbose_name = 'Роль'
+        verbose_name_plural = 'Роли'
+
 class News(models.Model):
     topic = models.CharField(max_length=255)
     news_text = models.TextField(blank=True)
@@ -42,6 +46,10 @@ class News(models.Model):
 
     def __str__(self):
         return self.topic
+    
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
 
 #class RoleCourses(models.Model):
 #    kurs = models.PositiveIntegerField(primary_key=True)
@@ -55,12 +63,20 @@ class Course(models.Model):
     def __str__(self):
         return self.title
     
+    class Meta:
+        verbose_name = 'Курс'
+        verbose_name_plural = 'Курсы'
+    
 class Module(models.Model): 
     module = models.PositiveIntegerField(primary_key=True)
     course = models.ForeignKey('Course', on_delete=models.PROTECT, null=True) 
     title = models.CharField(max_length=100, default='Title of module')
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = 'Модуль'
+        verbose_name_plural = 'Модули'
 
 class Lection(models.Model):
     lection = models.PositiveIntegerField(primary_key=True)
@@ -69,11 +85,20 @@ class Lection(models.Model):
     def __str__(self):
         return self.topic
 
+    class Meta:
+        verbose_name = 'Лекция'
+        verbose_name_plural = 'Лекции'
+
 class CategoryProduct(models.Model):
     category = models.PositiveIntegerField("Номер категории продукта", primary_key=True) 
     name = models.CharField("Имя категории", max_length=100)
     description = models.TextField("Описание", blank=True)
     image = models.ImageField("Фотография", upload_to="main/img/%Y/%m/%d/")
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = 'Категория продукта'
+        verbose_name_plural = 'Категории продуктов'
 
 class AboutProduct(models.Model):
     'id то есть primary key будет создан автоматически'

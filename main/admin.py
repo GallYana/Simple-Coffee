@@ -22,9 +22,13 @@ class UserAdmin(UserAdmin):
 admin.site.unregister(User)
 
 admin.site.register(User, UserAdmin)
+
 admin.site.register(Role)
 admin.site.register(News)
-admin.site.register(ModulesBarista)
+
+admin.site.register(Lection)
+admin.site.register(Module)
 admin.site.register(Course)
+
 admin.site.register(CategoryProduct)
 admin.site.register(AboutProduct)

@@ -52,14 +52,22 @@ class Course(models.Model):
     course = models.PositiveIntegerField(primary_key=True)
     title = models.CharField(max_length=100, default='Title')
     role = models.ForeignKey('Role', on_delete=models.PROTECT, null=True)
+    def __str__(self):
+        return self.title
     
-
-class ModulesBarista(models.Model):
-    number = models.PositiveIntegerField(primary_key=True)
-    module = models.ForeignKey('Course', on_delete=models.PROTECT, null=True) 
+class Module(models.Model): 
+    module = models.PositiveIntegerField(primary_key=True)
+    course = models.ForeignKey('Course', on_delete=models.PROTECT, null=True) 
     title = models.CharField(max_length=100, default='Title of module')
     def __str__(self):
         return self.title
+
+class Lection(models.Model):
+    lection = models.PositiveIntegerField(primary_key=True)
+    topic = models.CharField(max_length=100, default='Topic of lection')
+    module = models.ForeignKey('Module', on_delete=models.PROTECT, null=True) 
+    def __str__(self):
+        return self.topic
 
 class CategoryProduct(models.Model):
     category = models.PositiveIntegerField("Номер категории продукта", primary_key=True) 

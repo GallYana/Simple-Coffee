@@ -33,12 +33,13 @@ class Role(models.Model):
         verbose_name_plural = 'Роли'
 
 class News(models.Model):
-    topic = models.CharField(max_length=255)
-    news_text = models.TextField(blank=True)
-    photo = models.ImageField(upload_to="static/main/img/news/%Y/%m/%d/")
-    role = models.ForeignKey('Role', on_delete=models.PROTECT, null=True)
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
+    topic = models.CharField(max_length=255, verbose_name='Заголовок')
+    news_text = models.TextField(blank=True, verbose_name='Текст новости')
+    photo = models.ImageField(upload_to="static/main/img/news/%Y/%m/%d/", verbose_name='Изображение')
+    role = models.ForeignKey('Role', on_delete=models.PROTECT, null=True, verbose_name='Роль')
+    created_date = models.DateTimeField(default=timezone.now, verbose_name='Дата создания')
+    published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публикации')
+    is_published = models.BooleanField(default=True, verbose_name="Публикация")
 
     def publish(self):
         self.published_date = timezone.now()

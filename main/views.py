@@ -59,7 +59,7 @@ def user_registration(request):
 
 
 def index(request):
-    posts = News.objects.all()
+    posts = News.objects.filter(is_published=True)
     user = User.objects.filter(id=request.user.id)
     if len(user) > 0:
         mainCycle = UserProfile.objects.filter(user=request.user)[0]
@@ -75,7 +75,8 @@ def library(request):
     return render(request, 'main/library.html')
 
 def barista(request):
+
     return render(request, 'main/barista.html')
 
-def mod(request):
-    return HttpResponse('Знакомство')
+def show_module(request):
+    return render(request, 'main/module.html')

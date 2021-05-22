@@ -31,6 +31,9 @@
             <li>Фамилия: {{ info.last_name }}</li>
         </ul>
         {% endfor %}
+        {% if request.user.is_superuser %}
+        <a href="{% url 'admin:index' %}">Перейти в админ панель</a>
+        {% endif %}
         <!--<fieldset>
             <legend>ФИО</legend>
             <input type="text" placeholder="Enter Full Name" name="fullname" required>

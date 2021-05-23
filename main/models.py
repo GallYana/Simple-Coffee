@@ -7,7 +7,7 @@ from django.dispatch import receiver
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='static/main/img/users/%Y/%m/%d/', verbose_name='Изображение', blank=True)
+    avatar = models.ImageField(upload_to='static/main/img/users/%Y/%m/%d/', verbose_name='Изображение', blank=True, null=True)
     bdate = models.DateField(auto_now=False, auto_now_add=False, null=True, blank=True)
     coffee_address = models.TextField(blank=False, null=True)
     number = models.CharField(max_length=11, blank=True, null=True)
@@ -72,6 +72,7 @@ class Module(models.Model):
     module = models.PositiveIntegerField(primary_key=True)
     course = models.ForeignKey('Course', on_delete=models.PROTECT, null=True) 
     title = models.CharField(max_length=100, default='Title of module')
+    #slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL", null=True)
     def __str__(self):
         return self.title
     

@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 from .forms import UserForm
 
-from django.http import HttpResponse
+from django.db.models import F
 
 
 
@@ -62,21 +62,24 @@ def index(request):
     posts = News.objects.filter(is_published=True)
     user = User.objects.filter(id=request.user.id)
     if len(user) > 0:
+        chels = UserProfile.objects.filter(user=request.user)
+        for chel in chels:
+            c = Course.objects.filter(role=chel.role)
         mainCycle = UserProfile.objects.filter(user=request.user)[0]
-        return render(request, 'main/index.html', {'user':user[0], 'mainCycle':mainCycle, 'posts': posts})
+        return render(request, 'main/index.html', {'user':user[0], 'mainCycle':mainCycle, 'posts': posts, 'c': c})
     else:
          return redirect('login')
 
-def about(request):
+def menu(request):
     products = AboutProduct.objects.all()
     return render(request, 'main/about.html', {'products': products})
 
 def library(request):
     return render(request, 'main/library.html')
 
-def barista(request):
+def courses(request):
+    courses = Course.objects.all()
+    for i in courses:
+        modules = Module.objects.filter(course=i.course)
+        return render(request, 'main/courses.html', {'modules': modules})
 
-    return render(request, 'main/barista.html')
-
-def show_module(request):
-    return render(request, 'main/module.html')

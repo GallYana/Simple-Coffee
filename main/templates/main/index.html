@@ -6,14 +6,18 @@
 {% endblock %}
 
 {% block content %}
+
 <h2>Мои курсы</h2>
-<ul>
-    <li>Бариста <a href="{% url 'bar' %}">Продолжить</a></li>
-    <li>Менеджер <a href="#">Продолжить</a></li>
-</ul>
+
+{% for course in c %}
+    <a href="{% url 'courses' %}">{{ course.course }}</a>
+    {{ course.title }}
+{% endfor %}
+
 <h2>Новости кофейни</h2>
 
 {% for post in posts %}
+
 <h3>{{ post.topic }}</a></h3>
 <div>
     <ul style="list-style-type: none;">
@@ -32,5 +36,6 @@
 
 {% endfor %}
 {% endblock %}
+
 
 

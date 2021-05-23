@@ -15,16 +15,20 @@
         <a href="{% url 'logout' %}"><li>Выйти</li></a>
     </ul>
     <div>
-        
+
         {% for info in information %}
         <ul>
+            {% if info.avatar %}
             <li><img src="{{ info.avatar.url }}" width="300" height="300"></li>
+            {% endif %}
             <li>Username: {{ info.user }}</li>
             <li>Location: {{ info.coffee_address }}</li>
             <li>Birth Date: {{ info.bdate }}</li>
-
+            <li>Role: {{ info.role }}</li>
+            <li>Number: {{ info.number}}</li>
         </ul>
         {% endfor %}
+    
         {% for info in s %}
         <ul>
             <li>Имя: {{ info.first_name }}</li>

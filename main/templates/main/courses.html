@@ -1,5 +1,16 @@
 {% extends 'main/layout.html' %}
 
 {% block title %}
-    Личный кабинет
+
+    Мои курсы
+    
+{% endblock %}
+
+{% block content %}
+
+{% for module in modules %}
+    <h3>{{ module.title }}</h3>
+    пппп
+{% endfor %}
+пвавав
 {% endblock %}

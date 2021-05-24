@@ -9,8 +9,11 @@
 {% block content %}
 
 {% for module in modules %}
-    <h3>{{ module.title }}</h3>
-    пппп
+    <h3>{{ module.module_name }}</h3>
+    <ul>
+        <li>Модель родитель {{ module.parent }}</li>
+    </ul>
+   
 {% endfor %}
-пвавав
+
 {% endblock %}

@@ -70,11 +70,11 @@ class Course(models.Model):
     
 class Module(models.Model): 
     module = models.PositiveIntegerField(primary_key=True)
-    course = models.ForeignKey('Course', on_delete=models.PROTECT, null=True) 
-    title = models.CharField(max_length=100, default='Title of module')
+    parent = models.ForeignKey('Course', on_delete=models.PROTECT, null=True) 
+    module_name = models.CharField(max_length=100, default='Title of module')
     #slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL", null=True)
     def __str__(self):
-        return self.title
+        return self.module_name
     
     class Meta:
         verbose_name = 'Модуль'
@@ -90,6 +90,7 @@ class Lection(models.Model):
     class Meta:
         verbose_name = 'Лекция'
         verbose_name_plural = 'Лекции'
+
 
 class CategoryProduct(models.Model):
     category = models.PositiveIntegerField("Номер категории продукта", primary_key=True) 

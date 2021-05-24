@@ -78,8 +78,11 @@ def library(request):
     return render(request, 'main/library.html')
 
 def courses(request):
-    courses = Course.objects.all()
-    for i in courses:
-        modules = Module.objects.filter(course=i.course)
-        return render(request, 'main/courses.html', {'modules': modules})
+    chels = UserProfile.objects.filter(user=request.user)
+    for chel in chels:
+        c = Course.objects.filter(role=chel.role)
+        modules = []
+        for i in c:
+            modules += Module.objects.filter(parent=i.course)
+            return render(request, 'main/courses.html', {'modules': modules})
 

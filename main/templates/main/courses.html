@@ -16,4 +16,19 @@
    
 {% endfor %}
 
+{% for module in courses %}
+    <h3>{{ module.title }}</h3>
+
+   
+{% endfor %}
+
+{% for key, value in dictionary.items %}
+  {{ key }} = {{ value }}<br/>
+
+{% endfor %}
+<hr>
+{% for key, value in dictionary2.items %}
+  {{ key }} = {{ value }}<br/>
+
+{% endfor %}
 {% endblock %}

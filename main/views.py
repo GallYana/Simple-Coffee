@@ -79,10 +79,12 @@ def library(request):
 
 def courses(request):
     chels = UserProfile.objects.filter(user=request.user)
+    courses = []
     for chel in chels:
-        c = Course.objects.filter(role=chel.role)
-        modules = []
-        for i in c:
-            modules += Module.objects.filter(parent=i.course)
-            return render(request, 'main/courses.html', {'modules': modules})
+        courses += Course.objects.filter(role=chel.role)
+    modules = []
+    for i in courses:
+        modules += Module.objects.filter(parent=i.course)
+    return render(request, 'main/courses.html', {'modules': modules, 'courses': courses })
+
 

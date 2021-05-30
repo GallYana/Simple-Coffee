@@ -6,10 +6,6 @@ from django.utils.safestring import mark_safe
 from .models import *
 
 
-# admin.site.register(User)
-# admin.site.register(Role)
-# admin.site.register(News)
-
 class EmployeeInline(admin.StackedInline):
     model = UserProfile
     can_delete = False
@@ -19,6 +15,14 @@ class EmployeeInline(admin.StackedInline):
 # Define a new User admin
 class UserAdmin(UserAdmin):
     inlines = (EmployeeInline, )
+
+class ModuleAdmin(admin.ModelAdmin):
+    list_display = ('module', 'module_name', 'parent', 'order_course')
+    list_display_links = ('module', 'module_name')
+
+class LectionsAdmin(admin.ModelAdmin):
+    list_display = ('lection', 'topic', 'parent')
+    list_display_links = ('lection', 'topic')
 
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('id', 'topic', 'created_date', 'get_html_photo', 'is_published')
@@ -46,8 +50,8 @@ admin.site.register(User, UserAdmin)
 admin.site.register(Role)
 admin.site.register(News, NewsAdmin)
 
-admin.site.register(Lection)
-admin.site.register(Module)
+admin.site.register(Lection, LectionsAdmin)
+admin.site.register(Module, ModuleAdmin)
 admin.site.register(Course)
 
 admin.site.register(CategoryProduct)

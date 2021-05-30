@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+
+    Курс
+    
+{% endblock %}
+
+{% block content %}
+
+{% for l in lections %}
+    <ul style="list-style-type: none;">
+        <li>{{ l.topic }}</li>
+    </ul>
+{% endfor %}
+
+{% endblock %}

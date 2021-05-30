@@ -7,12 +7,14 @@
 
 {% block content %}
 
-<h2>Мои курсы</h2>
 
-{% for course in c %}
-    <a href="{% url 'courses' %}">{{ course.course }}</a>
-    {{ course.title }}
-{% endfor %}
+    <h2>Мои курсы</h2>
+
+    {% for c in courses %}
+        <h3>{{c.title}}</h3>
+        <a href="{{ c.get_absolute_url }}">Открыть курс</a>
+    {% endfor %}
+
 
 <h2>Новости кофейни</h2>
 

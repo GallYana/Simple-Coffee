@@ -7,28 +7,15 @@
 {% endblock %}
 
 {% block content %}
+    {% for module in modules|slice:"0:1" %}
+        <h2>{{ module.parent }}</h2>
+        
+    {% endfor %}
+    <hr>
+    {% for module in modules %}
+    
+        <h4>Модуль №{{ module.order_course }}. {{ module.module_name }}</h4>
+        <a href="{{ module.get_absolute_url }}">Открыть модуль</a>
+    {% endfor %}
 
-{% for module in modules %}
-    <h3>{{ module.module_name }}</h3>
-    <ul>
-        <li>Модель родитель {{ module.parent }}</li>
-    </ul>
-   
-{% endfor %}
-
-{% for module in courses %}
-    <h3>{{ module.title }}</h3>
-
-   
-{% endfor %}
-
-{% for key, value in dictionary.items %}
-  {{ key }} = {{ value }}<br/>
-
-{% endfor %}
-<hr>
-{% for key, value in dictionary2.items %}
-  {{ key }} = {{ value }}<br/>
-
-{% endfor %}
 {% endblock %}

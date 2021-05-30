@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import Group, User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -64,26 +65,33 @@ class Course(models.Model):
     def __str__(self):
         return self.title
     
+    def get_absolute_url(self):
+        return reverse('course', kwargs={'course_id': self.pk})
+    
     class Meta:
         verbose_name = 'Курс'
         verbose_name_plural = 'Курсы'
     
 class Module(models.Model): 
-    module = models.PositiveIntegerField(primary_key=True)
-    parent = models.ForeignKey('Course', on_delete=models.PROTECT, null=True) 
-    module_name = models.CharField(max_length=100, default='Title of module')
+    module = models.AutoField(primary_key=True, verbose_name='ID')
+    parent = models.ForeignKey('Course', on_delete=models.PROTECT, null=True, verbose_name='Курс') 
+    module_name = models.CharField(max_length=100, default='Title of module', verbose_name='Название')
+    order_course = models.PositiveIntegerField(verbose_name='Номер в курсе', null=True, blank=True)
     #slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL", null=True)
     def __str__(self):
         return self.module_name
-    
+
+    def get_absolute_url(self):
+        return reverse('module', kwargs={'module_id': self.pk})
+
     class Meta:
         verbose_name = 'Модуль'
         verbose_name_plural = 'Модули'
 
 class Lection(models.Model):
-    lection = models.PositiveIntegerField(primary_key=True)
-    topic = models.CharField(max_length=100, default='Topic of lection')
-    module = models.ForeignKey('Module', on_delete=models.PROTECT, null=True) 
+    lection = models.AutoField(primary_key=True, verbose_name='ID')
+    topic = models.CharField(max_length=100, default='Topic of lection', verbose_name='Заголовок')
+    parent = models.ForeignKey('Module', on_delete=models.PROTECT, null=True, verbose_name='Модуль') 
     def __str__(self):
         return self.topic
 

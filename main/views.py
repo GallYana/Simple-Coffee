@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
 from .models import *
 
@@ -59,14 +60,20 @@ def user_registration(request):
 
 
 def index(request):
-    posts = News.objects.filter(is_published=True)
+    posts = News.objects.filter(is_published=True).order_by('-created_date')
     user = User.objects.filter(id=request.user.id)
     if len(user) > 0:
+        mainCycle = UserProfile.objects.filter(user=request.user)[0]
         chels = UserProfile.objects.filter(user=request.user)
         for chel in chels:
-            c = Course.objects.filter(role=chel.role)
-        mainCycle = UserProfile.objects.filter(user=request.user)[0]
-        return render(request, 'main/index.html', {'user':user[0], 'mainCycle':mainCycle, 'posts': posts, 'c': c})
+            courses = Course.objects.filter(role=chel.role)
+        context = {
+        'posts': posts,
+        'user':user[0], 
+        'mainCycle':mainCycle,
+        'courses': courses
+        }
+        return render(request, 'main/index.html', context=context)
     else:
          return redirect('login')
 
@@ -77,14 +84,14 @@ def menu(request):
 def library(request):
     return render(request, 'main/library.html')
 
-def courses(request):
-    chels = UserProfile.objects.filter(user=request.user)
-    courses = []
-    for chel in chels:
-        courses += Course.objects.filter(role=chel.role)
-    modules = []
-    for i in courses:
-        modules += Module.objects.filter(parent=i.course)
-    return render(request, 'main/courses.html', {'modules': modules, 'courses': courses })
+def show_course(request, course_id):
+    modules = Module.objects.filter(parent=course_id)
+
+    return render(request, 'main/courses.html', {'modules': modules})
+
+def show_module(request, module_id):
+    lections = Lection.objects.filter(parent=module_id)
+    return render(request, 'main/modules.html', {'lections': lections})
+
 
 

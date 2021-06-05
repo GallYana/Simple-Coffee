@@ -91,7 +91,8 @@ def show_course(request, course_id):
 
 def show_module(request, module_id):
     lections = Lection.objects.filter(parent=module_id)
-    return render(request, 'main/modules.html', {'lections': lections})
+    return render(request, 'main/modules.html', {"lections": lections})
 
-
-
+def show_lection(request, lection_id):
+    lcontent = LectionContent.objects.filter(parent=lection_id)
+    return render(request, 'main/lection.html', {"lec": lcontent})

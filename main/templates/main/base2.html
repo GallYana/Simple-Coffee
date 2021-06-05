@@ -1,14 +1,6 @@
-{% extends 'main/layout.html' %}
 {% load static %}
 
-{% block title %}
-
-    Курс
-    
-{% endblock %}
-
-{% block content %}
-    {% for l in lections|slice:"0:1" %}
+{% for l in lections|slice:"0:1" %}
     <h3>
         <a href="{{ l.parent.parent.get_absolute_url }}">  
             <img src="{% static 'main/img/v.svg' %}" style="width: 20px;"> 
@@ -23,5 +15,4 @@
         <ul style="list-style-type: none;">
             <li><a href="{{ l.get_absolute_url }}">  {{ l.topic }}</a></li>
         </ul>
-    {% endfor %}
-{% endblock %}
+{% endfor %}

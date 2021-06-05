@@ -92,12 +92,20 @@ class Lection(models.Model):
     lection = models.AutoField(primary_key=True, verbose_name='ID')
     topic = models.CharField(max_length=100, default='Topic of lection', verbose_name='Заголовок')
     parent = models.ForeignKey('Module', on_delete=models.PROTECT, null=True, verbose_name='Модуль') 
+
     def __str__(self):
         return self.topic
+    
+    def get_absolute_url(self):
+        return reverse('lection', kwargs={'lection_id': self.pk})
 
     class Meta:
         verbose_name = 'Лекция'
         verbose_name_plural = 'Лекции'
+
+class LectionContent(models.Model):
+    parent = models.ForeignKey('Lection', on_delete=models.PROTECT, null=True, verbose_name='Лекция') 
+    content = models.TextField(verbose_name="Содержание", null=True)
 
 
 class CategoryProduct(models.Model):

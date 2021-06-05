@@ -1,0 +1,10 @@
+{% extends 'main/layout.html' %}
+
+
+{% block content %}
+    {% for l in lec %}
+        {{ l.parent.topic}}
+        {{ l.content }}
+
+    {% endfor %}
+    {% endblock %}

@@ -51,6 +51,7 @@ admin.site.register(Role)
 admin.site.register(News, NewsAdmin)
 
 admin.site.register(Lection, LectionsAdmin)
+admin.site.register(LectionContent)
 admin.site.register(Module, ModuleAdmin)
 admin.site.register(Course)
 

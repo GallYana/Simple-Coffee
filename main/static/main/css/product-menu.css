@@ -1,0 +1,75 @@
+.product-menu ul{
+    list-style: none;
+    outline:none;
+    color:#FF9656;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0;
+    
+  }
+
+  .product-menu li {
+    margin: 20px;
+    opacity: 0.8;
+    border-radius: 5px;
+    
+  }
+  .product-menu div {
+    color: #E5E5E5;
+    position:relative;
+    top:40%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 32px;
+  }
+  .product-menu li:hover {
+    opacity: 0.9;
+    
+  }
+
+  .product-menu li:active {
+    opacity: 1;
+    
+  }
+
+  .product-menu a {
+    color: #000000;
+    text-decoration: none;
+  }
+
+  
+
+  .block-1{
+    background-image: url('../img/menu-1-blur.png'); 
+  }
+
+  .block-2{
+    background-image: url('../img/menu-2-blur.png'); 
+
+  }
+
+  .block-3{
+    background-image: url('../img/menu-3-blur.png'); 
+  }
+
+  .block-4{
+    background-image: url('../img/menu-4-blur.png'); 
+  }
+
+  .block-5{
+    background-image: url('../img/menu-5-blur.png'); 
+  }
+  
+  .block-6{
+    background-image: url('../img/menu-6-blur.png'); 
+  }
+
+  .block{
+    
+    background-position: center;
+    background-size: contain;
+    width: 330px;
+    height: 310px;
+
+  }

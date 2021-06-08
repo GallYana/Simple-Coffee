@@ -1,18 +1,46 @@
 {% extends 'main/layout.html' %}
+{% load static %}
+
 
 {% block title %}
     Меню
 {% endblock %}
 
 {% block content %}
-<ul>
-    <li><a href="">Новинки</a></li>
-    <li><a href="">Завтраки до 12:00</a></li>
-    <li><a href="">Наша кухня</a></li>
-    <li><a href="">Кофе и напитки</a></li>
-    <li><a href="">Десерты</a></li>
-    <li><a href="">Выпечка</a></li>
-</ul>
+<nav class="product-menu">
+    <ul>
+        <li class="block block-1">
+            <a href="">
+                <div>Новинки</div>
+            </a>
+        </li>
+        <li class="block block-2">
+            <a href="">
+                <div>Завтраки до 12:00</div>
+            </a>
+        </li>
+        <li class="block block-3">
+            <a href="">
+                <div>Наша кухня</div>
+            </a>
+        </li>
+        <li class="block block-4">
+            <a href="">
+                <div>Кофе и напитки</div>
+            </a>
+        </li>
+        <li class="block block-5">
+            <a href="">
+                <div>Десерты</div>
+            </a>
+        </li>
+        <li class="block block-6">
+            <a href="">
+                <div>Выпечка</div>
+            </a>
+        </li>
+    </ul>
+</nav>
 <!--{% for product in products %}
 <div>
     <h1>{{ product.food_name }}</a></h1>

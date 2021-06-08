@@ -21,7 +21,7 @@ class ModuleAdmin(admin.ModelAdmin):
     list_display_links = ('module', 'module_name')
 
 class LectionsAdmin(admin.ModelAdmin):
-    list_display = ('lection', 'topic', 'parent')
+    list_display = ('lection', 'topic', 'parent', 'order_lection')
     list_display_links = ('lection', 'topic')
 
 class NewsAdmin(admin.ModelAdmin):

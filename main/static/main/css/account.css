@@ -1,0 +1,23 @@
+.account {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+}
+
+.navigation-account ul {
+    list-style: none;
+    outline:none;
+    color:#FF9656;
+    padding: 0; 
+}
+
+.navigation-account a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.info-account ul {
+    list-style: none;
+    outline:none;
+    padding: 0; 
+}

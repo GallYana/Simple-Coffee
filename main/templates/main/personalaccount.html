@@ -6,26 +6,28 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="account">Личный кабинет</h2>
-    <ul class="navigation-account">
-        <a href="http://"><li>Мои курсы</li></a>
-        <a href="http://"><li>График работы</li></a>
-        <a href="http://"><li>Зарплата</li></a>
-        <a href="http://"><li>Сменить пароль</li></a>
-        <a href="{% url 'logout' %}"><li>Выйти</li></a>
-    </ul>
-    <div>
-
+    <h2>Личный кабинет</h2>
+    <div class="account">
+        <nav class="navigation-account">
+            <ul>
+                <li><a href="http://">Мои курсы</a></li>
+                <li><a href="http://">График работы</a></li>
+                <li><a href="http://">Зарплата</a></li>
+                <li><a href="http://">Сменить пароль</a></li>
+                <li><a href="{% url 'logout' %}">Выйти</a></li>
+            </ul>
+        </nav>
+        <div class="info-account">
         {% for info in information %}
         <ul>
             {% if info.avatar %}
             <li><img src="{{ info.avatar.url }}" width="300" height="300"></li>
             {% endif %}
-            <li>Username: {{ info.user }}</li>
-            <li>Location: {{ info.coffee_address }}</li>
-            <li>Birth Date: {{ info.bdate }}</li>
-            <li>Role: {{ info.role }}</li>
-            <li>Number: {{ info.number}}</li>
+            <li>ФИО {{ info.user }}</li>
+            <li>Место работы {{ info.coffee_address }}</li>
+            <li>День рождения {{ info.bdate }}</li>
+            <li>Должность {{ info.role }}</li>
+            <li>Номер {{ info.number}}</li>
         </ul>
         {% endfor %}
     
@@ -38,23 +40,25 @@
         {% if request.user.is_superuser %}
         <a href="{% url 'admin:index' %}">Перейти в админ панель</a>
         {% endif %}
-        <!--<fieldset>
-            <legend>ФИО</legend>
-            <input type="text" placeholder="Enter Full Name" name="fullname" required>
-        </fieldset>
-        <fieldset>
-            <legend>Должность</legend>
-            <input type="text" placeholder="Enter Job" name="job" required>
-        </fieldset>
-        <fieldset>
-            <legend>Телефон</legend>
-            <input type="text" placeholder="Enter Phone" name="phone" required>
-        </fieldset>
-        <fieldset>
-            <legend>E-mail</legend>
-            <input type="text" placeholder="Enter Email" name="email" required>
-        </fieldset>
-        <button type="submit">Сохранить</button>
-    -->
+        <form method="post">
+            <fieldset>
+                <legend>ФИО</legend>
+                <input type="text" placeholder="Enter Full Name" name="fullname" required>
+            </fieldset>
+            <fieldset>
+                <legend>Должность</legend>
+                <input type="text" placeholder="Enter Job" name="job" required>
+            </fieldset>
+            <fieldset>
+                <legend>Телефон</legend>
+                <input type="text" placeholder="Enter Phone" name="phone" required>
+            </fieldset>
+            <fieldset>
+                <legend>E-mail</legend>
+                <input type="text" placeholder="Enter Email" name="email" required>
+            </fieldset>
+            <button type="submit">Сохранить</button>
+        </form>
     </div>
+</div>
 {% endblock %}

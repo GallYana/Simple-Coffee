@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UserForm
-from django.db.models import F
-
-
+from courses.models import *
 
 def p_account(request):
     if request.user.is_superuser:
@@ -51,9 +48,6 @@ def user_registration(request):
         form = UserForm()
         return render(request, 'main/registration.html', {'invalid':False, 'form': form})
 
-
-
-
 def index(request):
     posts = News.objects.filter(is_published=True).order_by('-created_date')
     user = User.objects.filter(id=request.user.id)
@@ -78,18 +72,3 @@ def menu(request):
 
 def library(request):
     return render(request, 'main/library.html')
-
-def show_course(request, course_id):
-    modules = Module.objects.filter(parent=course_id)
-
-    return render(request, 'main/courses.html', {'modules': modules})
-
-def show_module(request, module_id):
-    lections = Lection.objects.filter(parent=module_id)
-    return render(request, 'main/modules.html', {"lections": lections})
-
-def show_lection(request, lection_id):
-    lcontent = LectionContent.objects.filter(parent=lection_id)
-    return render(request, 'main/lection.html', {"lec": lcontent})
-
-

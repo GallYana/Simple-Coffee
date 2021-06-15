@@ -1,5 +1,5 @@
 {% extends 'main/layout.html' %}
-{% load static%}
+{% load static %}
 
 {% block title %}
     Личный кабинет
@@ -38,6 +38,10 @@
     </div> 
 
     <div class="personal">
+      {% if request.user.is_superuser %}
+        <a href="{% url 'admin:index' %}">Перейти в админ панель</a>
+        {% endif %}
+
     {% for info in information %}
         <form action="" method="post" enctype="multipart/form-data">
         <div class="avatar">
@@ -74,4 +78,6 @@
     </div>
         
 </div>
+
+
 {% endblock %}

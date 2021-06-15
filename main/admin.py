@@ -16,14 +16,6 @@ class EmployeeInline(admin.StackedInline):
 class UserAdmin(UserAdmin):
     inlines = (EmployeeInline, )
 
-class ModuleAdmin(admin.ModelAdmin):
-    list_display = ('module', 'module_name', 'parent', 'order_course')
-    list_display_links = ('module', 'module_name')
-
-class LectionsAdmin(admin.ModelAdmin):
-    list_display = ('lection', 'topic', 'parent', 'order_lection')
-    list_display_links = ('lection', 'topic')
-
 class NewsAdmin(admin.ModelAdmin):
     list_display = ('id', 'topic', 'created_date', 'get_html_photo', 'is_published')
     list_display_links = ('id', 'topic')
@@ -49,11 +41,6 @@ admin.site.register(User, UserAdmin)
 
 admin.site.register(Role)
 admin.site.register(News, NewsAdmin)
-
-admin.site.register(Lection, LectionsAdmin)
-admin.site.register(LectionContent)
-admin.site.register(Module, ModuleAdmin)
-admin.site.register(Course)
 
 admin.site.register(CategoryProduct)
 admin.site.register(AboutProduct)

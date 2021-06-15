@@ -1,0 +1,54 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}
+
+    Добавить тест
+    
+{% endblock %}
+
+{% block content %}
+  <h3>Добавление теста</h3>
+
+  <form class="test-form" method="post">
+    {% csrf_token %}
+    <div class="test-form__inputs">
+      <fieldset>
+        <input type="text" placeholder="Название теста" name="test_name" required>
+      </fieldset>
+    </div>
+
+    <div class="test-form__questions">
+      <div class="test-form__block">
+        <fieldset style="margin-bottom: 10px;">
+          <legend></legend>
+          <input type="text" placeholder="Вопрос" name="question_name" required>
+        </fieldset>
+
+        <p>Варианты ответа</p>
+        <div class="test-form__answers">
+          <fieldset style="margin-bottom: 10px;">
+            <legend></legend>
+            <input type="text" placeholder="Вариант ответа" name="answer_name-0" required>
+            <label>Верный</label>
+            <input type="checkbox" name="answer_success-0-0">
+          </fieldset>
+        </div>
+        <button
+          type="button"
+          class="test-form__btn"
+          onclick="answerAdd()"
+        >Добавить вариант ответа</button>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="test-form__btn"
+      onclick="questionAdd()"
+    >Добавить вопрос</button>
+    <button type="submit">Сохранить</button>
+  </form>
+
+  <a style="display: block; padding-top: 20px;" href="/test">Назад</a>
+  <script src="{% static 'main/js/test.js' %}"></script>
+{% endblock %}

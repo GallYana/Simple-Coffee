@@ -138,4 +138,27 @@ class AboutProduct(models.Model):
         verbose_name = 'О продукте'
         verbose_name_plural = 'О продуктах'
 
+class Test(models.Model):
+    name = models.CharField(verbose_name="Название теста", max_length=100)
+    questions_id = models.JSONField(verbose_name="ID вопросов")
+
+    def __str__(self):
+        return self.name
+
+class Question(models.Model):
+    title = models.CharField(verbose_name="Вопрос", max_length=100)
+    description = models.TextField(verbose_name="Описание вопроса")
+    answers_id = models.JSONField(verbose_name="ID ответов")
+    
+    def __str__(self):
+        return self.title
+
+class Answers(models.Model):
+    title = models.TextField(verbose_name="Ответ")
+    is_success = models.BooleanField(verbose_name="Правильность ответа")
+    
+    def __str__(self):
+        return self.title
+    
+
 

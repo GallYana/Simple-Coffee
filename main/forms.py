@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import *
 
 
 class UserForm(forms.ModelForm):
@@ -16,3 +17,33 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class TestForm(forms.ModelForm):
+    test_name = forms.CharField()
+    questions_id = forms.JSONField()
+    class Meta:
+        model = Test
+        fields = ['test_name', 'questions_id']
+
+    def save(self, commit=True):
+        print(self)
+        test_name = self.cleaned_data['test_name']
+        questions_id = self.cleaned_data['questions_id']
+
+        test = Test(name=test_name)
+        if commit:
+            test.save()
+        return test
+
+class QuestionForm(forms.ModelForm):
+    test_name = forms.CharField()
+    class Meta:
+        model = Test
+        fields = ['test_name']
+
+    def save(self, commit=True):
+        test_name = self.cleaned_data['test_name']
+        test = Test(name=test_name)
+        if commit:
+            test.save()
+        return test

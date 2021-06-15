@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.models import User
 
-from .forms import UserForm
+from .forms import *
 
 from django.db.models import F
 
@@ -96,3 +96,21 @@ def show_module(request, module_id):
 def show_lection(request, lection_id):
     lcontent = LectionContent.objects.filter(parent=lection_id)
     return render(request, 'main/lection.html', {"lec": lcontent})
+
+def tests(request):
+    tests = Test.objects.all()
+    return render(request, 'main/tests.html', {"tests": tests})
+
+def test_add(request):
+    if request.method == "POST":
+        form = TestForm(request.POST)
+        
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tests')
+        else:
+            return render(request, 'main/test_add.html', { 'form': form })
+    else:
+        form = UserForm()
+        return render(request, 'main/test_add.html', { 'form': form })

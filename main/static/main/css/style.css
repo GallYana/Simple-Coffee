@@ -217,4 +217,28 @@ html, body {
     margin-right: 15px;
   }
 
-  
+  .test-form {
+    margin-bottom: 20px;
+  }
+
+  .test-form__block {
+    margin-bottom: 80px;
+  }
+
+  .test-form__inputs {
+    margin-bottom: 20px;
+  }
+
+  .test-form__answers {
+    margin-bottom: 20px;
+  }
+
+  .test-form__answers input[name^="answer_name"] {
+    margin-right: 50px;
+  }
+
+  .test-form__btn {
+    display: block;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }

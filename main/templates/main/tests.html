@@ -1,0 +1,19 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}
+
+    Тесты
+    
+{% endblock %}
+
+{% block content %}
+  <h3>Тесты</h3>
+  <a href="add">Добавить тест</a>
+  <ul style="list-style-type: none;">
+    <li> {{ test }}</li>
+    <!-- <li><a href="{{ l }}">  {{ l }}</a></li> -->
+  </ul>
+    <!-- {% for test in tests %} -->
+    <!-- {% endfor %} -->
+{% endblock %}

@@ -4,18 +4,30 @@
     Регистрация
 {% endblock %}
 
+{% block menu %}              
+  <ul>
+    <li class="reg-li"><a href="{% url 'login' %}"><b class="reg-li">Войти</b></a></li>
+  </ul>
+{% endblock %}
+
 {% block content %}
-    <div align="center">
-      <header><h3>Регистрация</h3></header>
-      <form method="post" action="{% url 'registration' %}">
-        {%csrf_token%}
-        {{form.as_p}}
-        <input type="submit" value="Зарегистироваться">
-        </form>
-        {% if invalid%}
-       <p></p>
-       {% endif %}
+  <div class="content">
+    <div class="container">
+      <div class="personal-reg">
+        <div align="center">
+          <header><h3>Регистрация</h3></header>
+          <form method="post" action="{% url 'registration' %}">
+            {%csrf_token%}
+            {{form.as_p}}
+            <input type="submit" value="Зарегистироваться">
+            </form>
+            {% if invalid%}
+          <p></p>
+          {% endif %}
+        </div>
+        <br>
+        <a href="{% url 'login' %}" class="reg-vhod">Я уже зарегистрирован</a>
+      </div>
     </div>
-    <br>
-    <div align="center">Или же вы можете <a href="/login">Войти</a></div>
+  </div>
 {% endblock %}

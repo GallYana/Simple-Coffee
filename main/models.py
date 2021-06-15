@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group, User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.contrib import admin
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -137,5 +138,4 @@ class AboutProduct(models.Model):
     class Meta:
         verbose_name = 'О продукте'
         verbose_name_plural = 'О продуктах'
-
 

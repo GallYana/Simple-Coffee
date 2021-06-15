@@ -1,18 +1,4 @@
-
-.menu h1{
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 22px;
-    color: #363636;
-    margin-bottom: 35px;
-  }
-  
-  .menu{
-    margin-right:115px;
-  }
-  
-  .personal{
+.personal{
     width: 365px;
   }
   .personal label{
@@ -21,46 +7,7 @@
   .personal-reg label, h1{
     margin-left: 10px;
   }
-  
-  .menu a{
-    display: block;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-    color: #000000;
-    text-decoration: none;
-    border-top:0.5px solid rgba(0, 0, 0, 0.2);
-    width: 270px;
-    padding:16px 0px;
-  }
-  
-  .menu a:last-child{
-    color: #EB5757;
-    border-bottom:0.5px solid rgba(0, 0, 0, 0.2);
-  }
-  
-  .avatar{
-    text-align: center;
-    margin-bottom: 32px;
-  }
-  
-  .avatar img{
-    width:120px;
-    height: 120px;
-    border-radius: 100%;
-  }
-  
-  .strelka-right-2 {
-      margin-right:16px;
-      width: 16px;
-      height: 16px;
-      vertical-align: bottom;
-      fill: gray;
-      float: right;
-  }
-  
+
   input[type=text],
   input[type=password]{
     width: 365px;

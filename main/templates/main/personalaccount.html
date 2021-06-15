@@ -6,59 +6,72 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Личный кабинет</h2>
-    <div class="account">
-        <nav class="navigation-account">
-            <ul>
-                <li><a href="http://">Мои курсы</a></li>
-                <li><a href="http://">График работы</a></li>
-                <li><a href="http://">Зарплата</a></li>
-                <li><a href="http://">Сменить пароль</a></li>
-                <li><a href="{% url 'logout' %}">Выйти</a></li>
-            </ul>
-        </nav>
-        <div class="info-account">
-        {% for info in information %}
-        <ul>
-            {% if info.avatar %}
-            <li><img src="{{ info.avatar.url }}" width="300" height="300"></li>
-            {% endif %}
-            <li>ФИО {{ info.user }}</li>
-            <li>Место работы {{ info.coffee_address }}</li>
-            <li>День рождения {{ info.bdate }}</li>
-            <li>Должность {{ info.role }}</li>
-            <li>Номер {{ info.number}}</li>
-        </ul>
-        {% endfor %}
-    
-        {% for info in s %}
-        <ul>
-            <li>Имя: {{ info.first_name }}</li>
-            <li>Фамилия: {{ info.last_name }}</li>
-        </ul>
-        {% endfor %}
-        {% if request.user.is_superuser %}
-        <a href="{% url 'admin:index' %}">Перейти в админ панель</a>
+<div class="content">
+        
+    <div class="menu">
+      <h1>Личный кабинет</h1>
+      <a href="#" class="menu-link">Мои курсы
+        <svg class="strelka-right-2" viewBox="0 0 9 14">
+          <path  d="M6.660,8.922 L6.660,8.922 L2.350,13.408 L0.503,11.486 L4.813,7.000 L0.503,2.515 L2.350,0.592 L8.507,7.000 L6.660,8.922 Z" ></path>
+      </svg>
+      </a>
+      <a href="#" class="menu-link">График работы
+        <svg class="strelka-right-2" viewBox="0 0 9 14">
+          <path  d="M6.660,8.922 L6.660,8.922 L2.350,13.408 L0.503,11.486 L4.813,7.000 L0.503,2.515 L2.350,0.592 L8.507,7.000 L6.660,8.922 Z" ></path>
+      </svg>
+      </a>
+      <a href="#" class="menu-link">Зарплата
+        <svg class="strelka-right-2" viewBox="0 0 9 14">
+          <path  d="M6.660,8.922 L6.660,8.922 L2.350,13.408 L0.503,11.486 L4.813,7.000 L0.503,2.515 L2.350,0.592 L8.507,7.000 L6.660,8.922 Z" ></path>
+      </svg>
+      </a>
+      <a href="#" class="menu-link">Сменить пароль
+        <svg class="strelka-right-2" viewBox="0 0 9 14">
+          <path  d="M6.660,8.922 L6.660,8.922 L2.350,13.408 L0.503,11.486 L4.813,7.000 L0.503,2.515 L2.350,0.592 L8.507,7.000 L6.660,8.922 Z" ></path>
+      </svg>
+      </a>
+      <a href="{% url 'logout' %}" class="menu-link">Выйти
+        <svg class="strelka-right-2" viewBox="0 0 9 14">
+          <path  d="M6.660,8.922 L6.660,8.922 L2.350,13.408 L0.503,11.486 L4.813,7.000 L0.503,2.515 L2.350,0.592 L8.507,7.000 L6.660,8.922 Z" ></path>
+      </svg>
+      </a>
+    </div> 
+
+    <div class="personal">
+    {% for info in information %}
+        <form action="" method="post" enctype="multipart/form-data">
+        <div class="avatar">
+          {% if info.avatar %}
+        <img src="{{ info.avatar.url }}" alt="Аватарка">
         {% endif %}
-        <form method="post">
-            <fieldset>
-                <legend>ФИО</legend>
-                <input type="text" placeholder="Enter Full Name" name="fullname" required>
-            </fieldset>
-            <fieldset>
-                <legend>Должность</legend>
-                <input type="text" placeholder="Enter Job" name="job" required>
-            </fieldset>
-            <fieldset>
-                <legend>Телефон</legend>
-                <input type="text" placeholder="Enter Phone" name="phone" required>
-            </fieldset>
-            <fieldset>
-                <legend>E-mail</legend>
-                <input type="text" placeholder="Enter Email" name="email" required>
-            </fieldset>
-            <button type="submit">Сохранить</button>
-        </form>
+        <input type="file" name="avatar" value="">
+        </div>
+        <label for="fio">ФИО</label>
+        <br>
+        <input type="text" placeholder="{{ info.user }}" name="" id="fio" value="">
+        <br>
+
+        <label for="position">Должность</label>
+        <br>
+        <input type="text" placeholder="{{ info.role }}" name="" id="position" value="">
+        <br>
+
+        <label for="phone">Телефон</label>
+        <br>
+        <input type="text" placeholder="{{ info.number}}" name="" id="phone" value="">
+        <br>
+
+        <label for="mail">E-mail</label>
+        <br>
+        <input type="text" placeholder="Enter Email" name="" id="mail" value="">
+        <br>
+
+
+        <input type="submit" value="Сохранить">
+    
+    </form>
+    {% endfor %}
     </div>
+        
 </div>
 {% endblock %}

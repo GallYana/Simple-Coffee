@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'main/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'main/css/login.css'%}">
     <title>{% block title %}{{ title }}{% endblock %}</title>
 </head>
 <body>
@@ -15,6 +16,9 @@
               <a href="{% url 'index' %}"><img src="{% static 'main/img/logo.svg'%}"></a>
             </div>
                 <nav class="main-menu">
+                    {% block menu %}
+                    
+                    {% endblock %}
             </nav>
           </div>
       </header>

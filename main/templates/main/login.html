@@ -4,30 +4,42 @@
     Вход
 {% endblock %}
 
+{% block menu %}              
+  <ul>
+    <li class="reg-li"><a href="{% url 'registration' %}"><b class="reg-li">Регистрация</b></a></li>
+  </ul>
+{% endblock %}
+
 {% block content %}
-  <div align="center">
-    <form method="post" action="{% url 'login' %}" >
-      {% csrf_token %}
-      <h3> Вход </h3>
-      <div class="form-group">
-          <label for="username"> Логин: </label>
-          <br>
-          <input type="text" name="username" id="username" placeholder="Username">
+<div class="content">
+  <div class="container">
+    <div class="personal-reg">
+      <div align="center">
+        <form method="post" action="{% url 'login' %}" >
+          {% csrf_token %}
+          <h3> Вход </h3>
+          <div class="form-group">
+              <label for="username"> Логин: </label>
+              <br>
+              <input type="text" name="username" id="username" placeholder="Username">
+          </div>
+          <div class="form-group">
+              <label for="password"> Пароль: </label>
+              <br>
+              <input type="password" name="password" id="password" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Войти">
+          </div>
+        {% if invalid%}
+        <p> Incorrect login or password. </p>
+        {% endif %}
+        </form>
       </div>
-      <div class="form-group">
-          <label for="password"> Пароль: </label>
-          <br>
-          <input type="password" name="password" id="password" placeholder="Password">
-      </div>
-      <div class="form-group">
-        <input type="submit" value="Войти">
-      </div>
-     {% if invalid%}
-     <p> Incorrect login or password. </p>
-     {% endif %}
-    </form>
+      <a href="{% url 'registration' %}" class="reg-vhod">Я еще незарегистрирован</a>
+    </div>
   </div>
-  <div align="center">Или же вы можете <a href="/registration">Зарегистироваться</a></div>
+</div>
 {% endblock %}
 
 

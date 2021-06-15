@@ -1,14 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
 from .models import *
-
 from django.contrib.auth import authenticate, login, logout
-
 from django.contrib.auth.models import User
-
 from .forms import UserForm
-
 from django.db.models import F
 
 
@@ -96,3 +91,5 @@ def show_module(request, module_id):
 def show_lection(request, lection_id):
     lcontent = LectionContent.objects.filter(parent=lection_id)
     return render(request, 'main/lection.html', {"lec": lcontent})
+
+

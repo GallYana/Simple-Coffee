@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import UserForm
+from .forms import UserForm, UserProfileForm
 from courses.models import *
 
 def p_account(request):
@@ -10,6 +10,19 @@ def p_account(request):
     information = UserProfile.objects.filter(user=request.user)
     return render(request, 'main/personalaccount.html', {'information': information, 's': s})
 
+def p_account_edit(request):
+    if request.method == "POST":
+        form = UserProfileForm(request.POST)
+        
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('p_account')
+        else:
+            return render(request, 'main/personalaccount.html', { 'form': form })
+    else:
+        form = UserForm()
+        return render(request, 'main/personalaccount.html', { 'form': form })
 
 def user_login(request):
     if request.method == "POST":

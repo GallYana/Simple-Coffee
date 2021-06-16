@@ -43,7 +43,8 @@
         {% endif %}
 
     {% for info in information %}
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{% url 'account' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
         <div class="avatar">
           {% if info.avatar %}
         <img src="{{ info.avatar.url }}" alt="Аватарка">
@@ -52,7 +53,7 @@
         </div>
         <label for="fio">ФИО</label>
         <br>
-        <input type="text" placeholder="{{ info.user }}" name="" id="fio" value="">
+        <input type="text" placeholder="{{ info.user }}" name="user" id="fio" value="{{ info.user }}">
         <br>
 
         <label for="position">Должность</label>

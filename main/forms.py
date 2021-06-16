@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import UserProfile
 
 
 class UserForm(forms.ModelForm):
@@ -16,3 +17,7 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class UserProfileForm(forms.ModelForm):
+    user = forms.CharField(widget=forms.TextInput(attrs={'name': 'user'}))
+

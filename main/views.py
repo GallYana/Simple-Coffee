@@ -6,10 +6,6 @@ from .forms import UserForm
 from courses.models import *
 
 def p_account(request):
-    if request.user.is_superuser:
-        s = User.objects.filter(id=request.user.id)
-        return render(request, 'main/personalaccount.html', {'s' : s})
-    else: 
         s = User.objects.filter(id=request.user.id)
         information = UserProfile.objects.filter(user=request.user)
         return render(request, 'main/personalaccount.html', {'information': information, 's': s})

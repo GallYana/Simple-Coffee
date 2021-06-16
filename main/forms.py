@@ -19,5 +19,14 @@ class UserForm(forms.ModelForm):
         return user
 
 class UserProfileForm(forms.ModelForm):
-    user = forms.CharField(widget=forms.TextInput(attrs={'name': 'user'}))
+    user = forms.CharField()
+    class Meta:
+        model = UserProfile
+        fields = ['user']
 
+    def save(self, commit=True):
+        user = self.cleaned_data['user']
+        test = UserProfile(name=user)
+        if commit:
+            test.save()
+        return test

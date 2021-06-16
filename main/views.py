@@ -6,9 +6,10 @@ from .forms import UserForm
 from courses.models import *
 
 def p_account(request):
-        s = User.objects.filter(id=request.user.id)
-        information = UserProfile.objects.filter(user=request.user)
-        return render(request, 'main/personalaccount.html', {'information': information, 's': s})
+    s = User.objects.filter(id=request.user.id)
+    information = UserProfile.objects.filter(user=request.user)
+    return render(request, 'main/personalaccount.html', {'information': information, 's': s})
+
 
 def user_login(request):
     if request.method == "POST":

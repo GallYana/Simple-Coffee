@@ -18,15 +18,18 @@ class UserForm(forms.ModelForm):
             user.save()
         return user
 
-class UserProfileForm(forms.ModelForm):
-    user = forms.CharField()
+class EditUserProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
     class Meta:
         model = UserProfile
-        fields = ['user']
-
-    def save(self, commit=True):
-        user = self.cleaned_data['user']
-        test = UserProfile(name=user)
-        if commit:
-            test.save()
-        return test
+        fields = ['name', 'avatar', 'bdate', 'coffee_address', 'number']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-input'}),
+        }
+    
+    def clean_user(self):
+        name = self.cleaned_data['name']
+        return name
+    

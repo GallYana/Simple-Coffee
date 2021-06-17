@@ -12,6 +12,7 @@ class UserProfile(models.Model):
     coffee_address = models.TextField(blank=False, null=True)
     number = models.CharField(max_length=11, blank=True, null=True)
     role = models.ForeignKey('Role', on_delete=models.PROTECT, blank=True, null=True)
+    name = models.CharField(max_length=15, blank=True, null=True)
 
     def __unicode__(self):
         return self.user

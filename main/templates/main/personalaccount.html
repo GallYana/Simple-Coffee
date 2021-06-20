@@ -53,22 +53,22 @@
         </div>
         <label for="fio">ФИО</label>
         <br>
-        <input type="text" placeholder="{{ info.user }}" name="user" id="fio" value="{{ info.user }}">
+        <input type="text" placeholder="{{ info.user.first_name }}" name="user" id="fio" value="{{ info.user.first_name }} {{ info.user.last_name }}">
         <br>
 
         <label for="position">Должность</label>
         <br>
-        <input type="text" placeholder="{{ info.role }}" name="" id="position" value="">
+        <input type="text" placeholder="{{ info.role }}" name="" id="position" value="{{ info.role }}">
         <br>
 
         <label for="phone">Телефон</label>
         <br>
-        <input type="text" placeholder="{{ info.number}}" name="" id="phone" value="">
+        <input type="text" placeholder="{{ info.number}}" name="" id="phone" value="{{ info.number}}">
         <br>
 
         <label for="mail">E-mail</label>
         <br>
-        <input type="text" placeholder="Enter Email" name="" id="mail" value="">
+        <input type="text" placeholder="{{ info.user.email }}" name="" id="mail" value="{{ info.user.email }}">
         <br> 
     </form>
     {% endfor %}

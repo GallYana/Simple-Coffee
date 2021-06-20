@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import UserProfile
+from . import views
 
 
 class UserForm(forms.ModelForm):
@@ -25,11 +26,6 @@ class EditUserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['name', 'avatar', 'bdate', 'coffee_address', 'number']
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-input'}),
-        }
-    
-    def clean_user(self):
-        name = self.cleaned_data['name']
-        return name
+
+   
     

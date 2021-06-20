@@ -1,0 +1,11 @@
+{% load static %}
+{% load courses_tags %}
+
+{% get_lec filter=parent as list %}
+    {% for list in lections %}
+        <li><a href="{{ list.get_absolute_url }}"> {{ list.topic }}</a></li>
+    {% endfor %}
+
+{% block con %}
+
+{% endblock %}

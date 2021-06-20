@@ -6,8 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
-
     <h2>Мои курсы</h2>
 
     {% for c in courses %}
@@ -15,28 +13,21 @@
         <a href="{{ c.get_absolute_url }}">Открыть курс</a>
     {% endfor %}
 
+    <h2>Новости кофейни</h2>
 
-<h2>Новости кофейни</h2>
-
-{% for post in posts %}
-
-<h3>{{ post.topic }}</a></h3>
-<div>
-    <ul style="list-style-type: none;">
-        <li><img src="{{ post.photo.url }}" width="140px" height="110px" style="border-radius: 4px;"></li>
-        <li>
-            <p style="font-size: 14px;
-            line-height: 17px;">
-            {{ post.news_text }}
-            </p>
-        </li>
-        <br>
-        <li><i>{{ post.created_date }}</i></li>
-    </ul>
-</div>
-
-{% endfor %}
+    {% for post in posts %}
+        <h3>{{ post.topic }}</a></h3>
+        <div class="news">
+            <ul>
+                <li><img src="{{ post.photo.url }}" ></li>
+                <li>
+                    <p>
+                    {{ post.news_text }}
+                    </p>
+                </li>
+                <br>
+                <li><i>{{ post.created_date }}</i></li>
+            </ul>
+        </div>
+    {% endfor %}
 {% endblock %}
-
-
-

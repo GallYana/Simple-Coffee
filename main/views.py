@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import UserForm, EditUserProfileForm
 from courses.models import *
+from django.http import HttpResponse
+
 
 def p_account(request):
     s = User.objects.filter(id=request.user.id)
@@ -11,13 +13,15 @@ def p_account(request):
     return render(request, 'main/personalaccount.html', {'information': information, 's': s})
 
 def p_account_edit(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = EditUserProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('index')
+            edit = form.save(commit=False)
+            edit.user = request.user
+            edit.save()
+            return redirect('account')
         else:
-            return render(request, 'main/personalaccount_edit.html', { 'form': form })
+            form = EditUserProfileForm()
     else:
         form = EditUserProfileForm()
         return render(request, 'main/personalaccount_edit.html', { 'form': form})

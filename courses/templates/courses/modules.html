@@ -1,5 +1,7 @@
 {% extends 'main/layout.html' %}
+
 {% load static %}
+{% load courses_tags %}
 
 {% block title %}
 
@@ -9,14 +11,14 @@
 
 {% block content %}
     {% for l in lections|slice:"0:1" %}
-    <h3>
+    <h4>
         <a href="{{ l.parent.parent.get_absolute_url }}">  
             <img src="{% static 'main/img/v.svg' %}" style="width: 20px;"> 
             {{ l.parent.parent }}
         </a>
-    </h3>
+    </h4>
 
-    <h2>Модуль № {{ l.parent.order_course }}. {{ l.parent }}</h2>    
+    <h3>Модуль № {{ l.parent.order_course }}. {{ l.parent }}</h3>    
     {% endfor %}
 
     {% for l in lections %}
@@ -24,4 +26,7 @@
             <li><a href="{{ l.get_absolute_url }}">  {{ l.topic }}</a></li>
         </ul>
     {% endfor %}
+
+    
+        
 {% endblock %}

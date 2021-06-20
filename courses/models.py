@@ -51,3 +51,10 @@ class Lection(models.Model):
 class LectionContent(models.Model):
     parent = models.ForeignKey('Lection', on_delete=models.PROTECT, null=True, verbose_name='Лекция') 
     content = models.TextField(verbose_name="Содержание", null=True)
+
+    def __str__(self):
+        return self.parent.topic
+
+    class Meta:
+        verbose_name = 'Контент лекции'
+        verbose_name_plural = 'Контенты лекций'

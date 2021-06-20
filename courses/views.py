@@ -3,13 +3,14 @@ from .models import *
 
 def show_course(request, course_id):
     modules = Module.objects.filter(parent=course_id)
-
     return render(request, 'courses/courses.html', {'modules': modules})
 
 def show_module(request, module_id):
     lections = Lection.objects.filter(parent=module_id)
-    return render(request, 'courses/modules.html', {"lections": lections})
+    lcontent = LectionContent.objects.all()
+    return render(request, 'courses/modules.html', {"lections": lections, "lec": lcontent})
 
 def show_lection(request, lection_id):
     lcontent = LectionContent.objects.filter(parent=lection_id)
     return render(request, 'courses/lection.html', {"lec": lcontent})
+

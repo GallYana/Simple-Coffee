@@ -1,14 +1,9 @@
 .news ul{
     list-style: none;
     outline:none;
-    color:#FF9656;
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 0;
-    margin-left: 50px;
   }
 
-  .news li {
+  .news li img {
     margin: 20px;
     opacity: 0.8;
     border-radius: 4px;
